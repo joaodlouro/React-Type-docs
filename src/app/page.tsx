@@ -1,4 +1,4 @@
-"use client" // convertendo cpmponente   // e     <button  onClick={function click) e possivel criar a função dentro de button. 
+"use client" // convertendo cpmponente   // e     <button  onClick={function click) e possivel criar a função dentro de button.  <button  onClick={() => alert("Function on")} outro jeito 
         
 
 
@@ -11,9 +11,7 @@ const Page = () => {
   }
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <button  onClick={function click(){
-        alert ("function on 2");
-      }}  className="p-3 bg-blue-700 text-white rounded-md">
+      <button  onClick={() => alert("Function on")}  className="p-3 bg-blue-700 text-white rounded-md">
         clique aqui
       </button>
     </div>
