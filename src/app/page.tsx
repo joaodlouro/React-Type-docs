@@ -6,12 +6,15 @@ import "./globals.css";
 
 
 const Page = () => {
-  function handleClick () {
-    alert("Aquiiii!")      
+
+  const handleClick = () => {
+    alert("function on");
   }
+
+
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <button  onClick={() => alert("Function on")}  className="p-3 bg-blue-700 text-white rounded-md">
+      <button  onClick={handleClick}  className="p-3 bg-blue-700 text-white rounded-md">
         clique aqui
       </button>
     </div>
