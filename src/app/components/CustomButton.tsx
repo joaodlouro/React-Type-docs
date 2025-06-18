@@ -4,10 +4,16 @@ type Props = {
 };
 
 export const CustomButton = ({ label, onClick }: Props) => {
+  const handleClick = () => {
+    //alguma coisa
+    onClick(); // chama a função
+    //depois alguma
+  };
+
   return (
     <button
-      onClick={onClick}
-      className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-md shadow transition duration-200"
+      onClick={handleClick}
+      className="p-3 rounded-md text-white bg-blue-700 hover:bg-blue-800 transition"
     >
       {label}
     </button>
