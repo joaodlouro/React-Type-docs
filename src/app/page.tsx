@@ -1,22 +1,23 @@
-"use client" // convertendo cpmponente   // e     <button  onClick={function click) e possivel criar a função dentro de button.  <button  onClick={() => alert("Function on")} outro jeito 
-        
-
-
+"use client";
+//separando os alerts 
+import { CustomButton } from "./components/CustomButton";
 import "./globals.css";
 
 
 const Page = () => {
 
-  const handleClick = () => {
-    alert("function on");
-  }
+  const handleButtton1 = ()=> alert('aqui 1')
+    const handleButtton2 = ()=> alert('aqui 2')
+      const handleButtton3 = ()=> alert('aqui 3')
+
 
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <button  onClick={handleClick}  className="p-3 bg-blue-700 text-white rounded-md">
-        clique aqui
-      </button>
+    <div className="w-screen h-screen flex justify-center items-center gap-4">
+      <CustomButton label="aqui1"  onClick={handleButtton1}/>
+            <CustomButton label="aqui2" onClick={handleButtton2}/>
+                  <CustomButton label="aqui3" onClick={handleButtton3}/>
+
     </div>
   );
 };
