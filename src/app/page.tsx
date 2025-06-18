@@ -15,7 +15,7 @@ const Page = () => {
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center gap-6">
       <h1 className="text-5xl">Form login</h1>
-      <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
         <input type="text" className="p-2 border border-gray-300 rounded" />
         <input
           type="submit"
