@@ -1,13 +1,14 @@
 "use client"
+import { useState } from "react";
 //use states 
 import "./globals.css"
 
 const Page = () => {
-let count = 0;
+  const [count, setCount] = useState<number>(0);
 
-const handleClickButton = () => {
-  count++; 
-
+  const handleClickButton = () => {
+    count = count + 1;
+    setCount(count);
 
 }
 
