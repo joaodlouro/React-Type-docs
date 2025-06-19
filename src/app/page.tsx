@@ -1,14 +1,15 @@
 "use client"
 import { useState } from "react";
 //use states 
+//deixar tipado 
 import "./globals.css"
 
 const Page = () => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState(0);
 
   const handleClickButton = () => {
-    count = count + 1;
-    setCount(count);
+   
+    setCount(count + 1);
 
 }
 
