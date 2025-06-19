@@ -1,30 +1,23 @@
-"use client";
-//input basico
-// //sempre lembrar dos import
-// // (event: FormEvent<HTMLFormElement>) expecificando de onde vem
-
-import "./globals.css";
-import { FormEvent } from "react";
+"use client"
+//use states 
+import "./globals.css"
 
 const Page = () => {
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    alert("opa, aqui 1");
-  };
+let count = 0;
 
-  return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center gap-6">
-      <h1 className="text-5xl">Form login</h1>
-      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
-        <input type="text" className="p-2 border border-gray-300 rounded" />
-        <input
-          type="submit"
-          value="Enviar"
-          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        />
-      </form>
-    </div>
-  );
-};
+const handleClickButton = () => {
+  count++; 
 
+
+}
+
+return(
+
+<div className="w-screen h-screen flex flex-col justify-center items-center text-3xl" >
+<p>{count}</p>
+ <button onClick={handleClickButton} className="bg-red-500 p-4">+1</button>
+
+</div>
+);
+}
 export default Page;
