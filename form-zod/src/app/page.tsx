@@ -1,29 +1,36 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
- const Page = () => {
-  const [name, setName] = useState('joaozonho123');
-  const [age, setAge] = useState(50);
-
+const Page = () => {
+  const [firstName, setFirstName] = useState("João");
+  const [lastName, setLastName] = useState("Silva");
+  const [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    console.log ('rodando :p');
-
-  }, [age]);
+    setFullName(`${firstName} ${lastName}`);
+  }, [firstName, lastName]);
 
   return (
-    <div className="">
+    <div className="p-6">
+      <h1 className="text-xl font-semibold mb-2">My Name</h1>
+      <p className="text-lg mb-4">{fullName}</p>
 
-      <p>nome aqui e {name} e eu tenho {age} receba</p>
-       <hr/>
-       <button className= "btn p-3 btn-primary border-color bg-red-500" onClick={() => setName('joaozonho123')}> mudar  </button>
-       <button className= "btn p-3 btn-primary border-color bg-red-500" onClick={() => setName('Pedro')}> mudar  </button>
-       <button className= "btn p-3 btn-primary  bg-red-500" onClick={() => setAge(50)}> mudar idade </button>
-        <button className= "btn p-3 btn-primary  bg-red-500" onClick={() => setAge(25)}> mudar idade </button>
+      <hr/>
 
+      <div className="flex gap-4">
+        <button
+          className="border border-red-500 px-4 py-2 rounded hover:bg-red-100"
+          onClick={() => setFirstName("Vitor")}>
+          Set to Vitor
+        </button>
+
+        <button className="border border-red-500 px-4 py-2 rounded hover:bg-red-100"onClick={() => setFirstName("Pedro")}>
+          Set to Pedro
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default Page;
