@@ -5,11 +5,8 @@ import { useState, useEffect } from "react";
 const Page = () => {
   const [firstName, setFirstName] = useState("João");
   const [lastName, setLastName] = useState("Silva");
-  const [fullName, setFullName] = useState("");
-
-  useEffect(() => {
-    setFullName(`${firstName} ${lastName}`);
-  }, [firstName, lastName]);
+ 
+  const fullName = firstName + " " + lastName;
 
   return (
     <div className="p-6">
