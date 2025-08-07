@@ -2,7 +2,9 @@ import { Item } from "@/types/Item"
 
 type AddAction = { 
   type: 'add';
-  payload: string;
+  payload: {
+   text: string;
+  };
 }
 
 type EditTextAction ={
@@ -15,12 +17,17 @@ type EditTextAction ={
 
 type ToggleDoneAction ={
   type: 'toggleDone';
-  payload: number;
+  payload: {
+  id:number;
+
+  }
 }
 
 type removeAction = {
   type: 'remove';
-  payload: number;
+  payload: {
+  id: number;
+  };
 }
 
 type ListActions = AddAction | EditTextAction | ToggleDoneAction | removeAction ;
