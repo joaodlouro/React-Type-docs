@@ -1,22 +1,48 @@
 "use client"
 
-import { Square } from '@/components/Square';
+import {Item} from "@/types/item" //sempre lembre de importar o tipo Item 
+import { useState } from 'react';
 
-import { useState} from "react";
 
 const Page = () => {
-  const [show, setShow] = useState(false);
+  const [list, setList] = useState<Item[]>([]);
+
+  const addNewItem = (text: string) => {
+    setList([...list, {
+      id: list.length,
+      text,
+      done: false
+    }]); 
+  };
+
+  const editItem = (id: number, newText: string) => {
+  setList(
+    list.map(t => {
+      if (t.id === id) t.text = newText;
+      return t;
+    })
+  );
+};
+
+
+  const toggleItem = (id: number) => {
+    setList(
+      list.map(t => {
+        if (t.id === id) t.done = !t.done;
+        return t;
+      })
+    );
+  };
+
+  const removeItem = (id: number) => {
+    setList(list.filter(t => t.id !== id));
+  };
 
   return (
-
-      <div className="flex flex-col justify-center items-center min-h-screen">
-      <button className="bg-red-600 p-5 mb-5" onClick={() => setShow (!show)}>Mostrar/Ocultar</button> 
-      {show && <Square />}
-
+    <div className="flex h-screen w-full items-center justify-center">
+      
     </div>
+  );
+};
 
-  )
-
-}
-
-export default Page
+export default Page;
