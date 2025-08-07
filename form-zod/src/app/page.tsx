@@ -1,45 +1,43 @@
 "use client"
 
 import {Item} from "@/types/Item" //sempre lembre de importar o tipo Item 
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
+import { listReducer } from "@/reducer/listReducer";
+import { useEffect } from "react";
 
 
 const Page = () => {
-  const [list, setList] = useState<Item[]>([]);
+ const [list, dispatch] = useReducer(listReducer, []);
+  
 
-  const addNewItem = (text: string) => {
-    setList([...list, {
-      id: list.length,
-      text,
-      done: false
-    }]); 
-  };
-
-  const editItem = (id: number, newText: string) => {
-  setList(
-    list.map(t => {
-      if (t.id === id) t.text = newText;
-      return t;
-    })
-  );
+const handleAddClick = () =>{
+  dispatch({
+    type:'add',
+    payload:{
+      text: 'novo item'
+    }
+  })
 };
 
 
-  const toggleItem = (id: number) => {
-    setList(
-      list.map(t => {
-        if (t.id === id) t.done = !t.done;
-        return t;
-      })
-    );
-  };
-  const removeItem 
-= (id: number) => {
-    setList(list.filter(t => t.id !== id));
-  };
+useEffect(() => {
+  dispatch({
+    type:'remove',
+    payload: {id: 2}
+  });
+
+  dispatch({
+    type:'editText',
+    payload: {id: 2, newText: 'receba'}
+  });
+}, []);
+
+
+
 
   return (
     <div className="flex h-screen w-full items-center justify-center">
+      <button className=" border bg-red-500" onClick={handleAddClick}>ADICIONAR AQUI</button>
       
     </div>
   );
