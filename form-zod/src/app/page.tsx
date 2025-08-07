@@ -1,6 +1,6 @@
 "use client"
 
-import {Item} from "@/types/item" //sempre lembre de importar o tipo Item 
+import {Item} from "@/types/Item" //sempre lembre de importar o tipo Item 
 import { useState } from 'react';
 
 
@@ -33,8 +33,8 @@ const Page = () => {
       })
     );
   };
-
-  const removeItem = (id: number) => {
+  const removeItem 
+= (id: number) => {
     setList(list.filter(t => t.id !== id));
   };
 
