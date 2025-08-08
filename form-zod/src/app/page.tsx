@@ -8,38 +8,54 @@ import { useEffect } from "react";
 
 const Page = () => {
  const [list, dispatch] = useReducer(listReducer, []);
+ const [addField, setAddField] = useState('');
+
+ const handleAdddButton = () => {
+ if (addField.trim()=== '') return false;
   
+ dispatch ({
+  type: 'add', 
+  payload: {
+    text: addField.trim ()
+  }
+  
+ });
 
-const handleAddClick = () =>{
-  dispatch({
-    type:'add',
-    payload:{
-      text: 'novo item'
-    }
-  })
-};
+ setAddField ('')  //limpa o campo
 
-
-useEffect(() => {
-  dispatch({
-    type:'remove',
-    payload: {id: 2}
-  });
-
-  dispatch({
-    type:'editText',
-    payload: {id: 2, newText: 'receba'}
-  });
-}, []);
-
+ }
+  
 
 
 
   return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <button className=" border bg-red-500" onClick={handleAddClick}>ADICIONAR AQUI</button>
-      
+   <div className="container mx-auto">
+    <h1 className="text-center text-4xl p-5"> Lista de tarefas treino</h1>
+
+    <div className=" max-w-2xl mx-auto  flex rounded-md border border-white-500 p-8 my-4 bg-gray-900">
+        <input
+         type="text" 
+         className=" flex-1 rounded-md border border-gray-50 p-3 bg-transparent text-white m-0.5 outline-none" 
+         placeholder="Digite algo"
+         value={addField}
+         onChange={e => setAddField(e.target.value)}
+         />
+
+        <button className="p-5 "
+          onClick={handleAdddButton}
+          >ADICIONAR 
+          </button>
+
     </div>
+
+    <ul>
+      {list.map(item => (
+        <li key={item.id}> {item.text}</li>
+      ))}
+    </ul>
+           
+
+   </div>
   );
 };
 
