@@ -31,6 +31,18 @@ const Page = () => {
     payload: {id}
   })
  };
+
+ const handleEdit = (id: number) => {
+  const item = list.find(it => it.id === id);
+if (!item) return false;
+  const newText = window.prompt('Editar Tarefa, item.text');
+  if (!newText || newText.trim()=='') return false;
+
+  dispatch({
+    type: 'editText',
+    payload: { id, newText}
+  })
+ };
   
 
 
@@ -71,7 +83,7 @@ const Page = () => {
          
 
          <p className="flex-1 text-lg">{item.text}</p>
-         <button className="mx-4  text-white hover:text-gray-500"> Editar </button>
+         <button onClick={() => handleEdit (item.id)  } className="mx-4  text-white hover:text-gray-500"> Editar </button>
          <button className="mx-4  text-white hover:text-gray-500"> Excluir </button>
          </li>
       ))}
