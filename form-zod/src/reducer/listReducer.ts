@@ -41,19 +41,19 @@ export const listReducer = (list: Item[], action: ListActions ) =>{
         done: false
       }]
       case 'editText':
-        return list.map(t =>{
-          if (t.id === action.payload.id){
-            t.text = action.payload.newText
-
-          }
-          return t 
-        });
+      return list.map(t => 
+        t.id === action.payload.id
+          ? { ...t, text: action.payload.newText } 
+          : t 
+      );
 
         case 'toggleDone':
-          return list.map(t=>{
-            if (t.id === action.payload.id) t.done = !t.done;
-            return t
-          });
+     return list.map(t => {
+  if (t.id === action.payload.id) {
+    return { ...t, done: !t.done }; 
+  }
+  return t; 
+   });
 
           case 'remove':
             return list.filter(t => t.id !== action.payload.id);

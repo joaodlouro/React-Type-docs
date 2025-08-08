@@ -23,7 +23,14 @@ const Page = () => {
 
  setAddField ('')  //limpa o campo
 
- }
+ };
+
+ const handleDoneCheckbox = ( id: number) => {
+  dispatch({
+    type: 'toggleDone',
+    payload: {id}
+  })
+ };
   
 
 
@@ -48,9 +55,25 @@ const Page = () => {
 
     </div>
 
-    <ul>
+    <ul className="max-w-2xl mx-auto">
       {list.map(item => (
-        <li key={item.id}> {item.text}</li>
+        <li
+         key={item.id}
+         className="flex items-center p-3 my-3 border-b border-gray-700"
+         > 
+
+         <input 
+         type="checkbox"
+         className="w-5 h-5 mr-4"
+         checked={item.done}
+         onClick={() => handleDoneCheckbox(item.id)}
+         />
+         
+
+         <p className="flex-1 text-lg">{item.text}</p>
+         <button className="mx-4  text-white hover:text-gray-500"> Editar </button>
+         <button className="mx-4  text-white hover:text-gray-500"> Excluir </button>
+         </li>
       ))}
     </ul>
            
