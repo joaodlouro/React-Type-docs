@@ -43,6 +43,16 @@ if (!item) return false;
     payload: { id, newText}
   })
  };
+
+ const handleRemove = (id:number) =>{                    //remoção simples com reducer  super state!!!!!
+
+  if(!window.confirm('Excluir?')) return false;
+
+ dispatch({
+  type: 'remove',
+  payload: { id }
+ });
+ }
   
 
 
@@ -84,7 +94,7 @@ if (!item) return false;
 
          <p className="flex-1 text-lg">{item.text}</p>
          <button onClick={() => handleEdit (item.id)  } className="mx-4  text-white hover:text-gray-500"> Editar </button>
-         <button className="mx-4  text-white hover:text-gray-500"> Excluir </button>
+         <button onClick={() => handleRemove(item.id)} className="mx-4  text-white hover:text-gray-500"> Excluir </button>
          </li>
       ))}
     </ul>
