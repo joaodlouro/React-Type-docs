@@ -1,4 +1,12 @@
-import { createContext } from "react";
+import {createContext} from "react"
 
-export const ValorCountInitial = 10; 
-export const CountContext = createContext(ValorCountInitial);
+type CountContextType = {
+    onlineCount: number;
+    setOnlineCount: (n: number) => void;
+
+
+
+}
+
+
+export const CountContext = createContext <CountContextType | null> (null);
