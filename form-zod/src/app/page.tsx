@@ -1,23 +1,26 @@
 "use client"
 
 import {Header} from "@/components/Header"
-import { OnlineUsers } from "@/components/OnlineUsers";
-import { CountContext } from "@/contexts/CountContext";
-import {useState} from "react";
+import {  CountProvider } from "@/contexts/CountContext";
+
 
 
 
 const Page = () => {
 
-  const [onlineCount, setOnlineCount] = useState(92);
+
 
   return(
-    <div className="container mx-auto">
-      <CountContext.Provider value={{onlineCount, setOnlineCount}}>
-    <Header />
-    </CountContext.Provider>
+    <div className="container mx-auto">    
+
+        <CountProvider>
+          <Header />
+        </CountProvider>
+     
     </div>
   );
 };
 
 export default Page;
+
+
