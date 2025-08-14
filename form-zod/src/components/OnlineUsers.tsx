@@ -1,6 +1,14 @@
+import { CountContext } from "@/contexts/CountContext";
+import { count } from "console";
+import { useContext } from "react";
+
 export const OnlineUsers = () => {
+ 
+    const count = useContext (CountContext)
+   
     return(
-      
-        <p>online contador...</p>
-    );
-};
+
+<p>Online: {count}</p>
+
+    )
+}
