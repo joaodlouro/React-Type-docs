@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { PostCtx } from "@/contexts/PostCtx";
+import { useContext, useState } from "react";
 
 export const Header = () =>{
+   const postCtx = useContext (PostCtx);
    const [titleInput, setTitleInput] = useState('');
    const [bodyInput, setBodyInput] = useState ('');
 
    const handleAddButton = () =>{
     if (titleInput && bodyInput){
+      postCtx?.addPost(titleInput, bodyInput);
+      setTitleInput('');
+      setBodyInput('');
 
     }
    }
+
 
 return(
 <header>
