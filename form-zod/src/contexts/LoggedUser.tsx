@@ -8,7 +8,7 @@ type ContextType = {
 export const LogggedUserContext = createContext<ContextType | null>(null); 
 
 export const LoggedUserProvider = ({ children }: { children: ReactNode }) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState("name");
 
   return (
     <LogggedUserContext.Provider value={{ name, setName }}>

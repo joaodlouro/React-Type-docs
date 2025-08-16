@@ -2,6 +2,7 @@
 
 import {Header} from "@/components/Header"
 import {  CountProvider } from "@/contexts/CountContext";
+import { LoggedUserProvider } from "@/contexts/LoggedUser";
 
 
 
@@ -13,9 +14,9 @@ const Page = () => {
   return(
     <div className="container mx-auto">    
 
-        <CountProvider>
+        <LoggedUserProvider>
           <Header />
-        </CountProvider>
+        </LoggedUserProvider>
      
     </div>
   );
