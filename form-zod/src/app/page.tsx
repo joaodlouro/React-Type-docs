@@ -1,27 +1,30 @@
 "use client"
 
-import {Header} from "@/components/Header"
-import {  CountProvider } from "@/contexts/CountContext";
-import { LoggedUserProvider } from "@/contexts/LoggedUser";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header"
+import { PostList } from "@/components/PostList";
+import { PostProvider } from "@/contexts/PostCtx";
 
 
 
 
-const Page = () => {
+ const Page = () =>{
 
 
+return(
+  <PostProvider>
 
-  return(
-    <div className="container mx-auto">    
+<div className="container mx-auto">
 
-        <LoggedUserProvider>
-          <Header />
-        </LoggedUserProvider>
-     
-    </div>
-  );
-};
+ <Header />
+ <PostList/>
+ <Footer />
 
-export default Page;
+</div>
+</PostProvider>
+
+);
+ };
 
 
+ export default Page;
