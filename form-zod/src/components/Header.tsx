@@ -1,46 +1,45 @@
-import { LoggedUserProvider, LogggedUserContext } from "@/contexts/LoggedUser"
-import { useContext } from "react"
+import { useState } from "react";
 
+export const Header = () =>{
+   const [titleInput, setTitleInput] = useState('');
+   const [bodyInput, setBodyInput] = useState ('');
 
-export const Header = () => {
+   const handleAddButton = () =>{
+    if (titleInput && bodyInput){
 
-const loggedUserCtx= useContext(LogggedUserContext);
-
-const handleLogout= () =>{
-
-   loggedUserCtx?.setName('')
-};
+    }
+   }
 
 return(
+<header>
 
- <header>
+<h1 className="text-3xl"> titulo aqui</h1>
 
-  <h1 className="text-3xl">
-   Titulo da pagina!
-  </h1>
+<div className="max-w-xl  flex flex-col gap-3 border border-dorred border-gray-400 p-3 my-4">
 
-  {loggedUserCtx?.name &&
+   <input 
+   type="text"
+   placeholder="Digite aqui"
+   className="border border-gray-300 p-2 text-black text-xl"
+   value={titleInput}
+   onChange={e => setTitleInput(e.target.value)}
+   />
 
-  <>
-  <p className="">
-    User logado: {loggedUserCtx?.name} 
-    </p>
-    
-    <button className="" 
-    onClick={handleLogout}>
-       Exit
-    </button>
-  </>
-  }
+   <textarea 
+   placeholder="Digite algo"
+   className="h-24 border border-gray-300 p-2 text-black text-xl"
+   value={bodyInput}
+   onChange={ e => setBodyInput(e.target.value)}
 
-  {(!loggedUserCtx ||  loggedUserCtx?.name === '') &&
-<p> Usser DESLOGADO</p>}
+   ></textarea>
 
-   
- 
- </header>
-
- 
+   <button 
+   className="bg-blue-500 p-3 text-white rounded-md"
+   onClick={handleAddButton}
+   >
+      Adicionar</button>
+</div>
+</header>
 
 
 );
