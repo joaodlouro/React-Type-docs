@@ -1,30 +1,14 @@
+
 "use client"
 
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header"
-import { PostList } from "@/components/PostList";
-import { PostProvider } from "@/contexts/PostCtx";
+import React from "react";
 
-
-
-
- const Page = () =>{
-
+const Page = () => {
 
 return(
-  <PostProvider>
 
-<div className="container mx-auto">
+  <div>.....</div>
+)
+};
 
- <Header />
- <PostList/>
- <Footer />
-
-</div>
-</PostProvider>
-
-);
- };
-
-
- export default Page;
+export default Page;
