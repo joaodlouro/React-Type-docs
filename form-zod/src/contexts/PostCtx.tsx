@@ -1,35 +1,31 @@
 import { createContext, ReactNode, useReducer } from "react";
-import {Post} from "@/types/Post"
+import { Post } from "@/types/Post";
 import { postReducer } from "@/reducer/postReducer";
 
-
-type PostCtxType ={
-
+type PostCtxType = {
     posts: Post[];
     addPost: (title: string, body: string) => void;
-}
+    removePost: (id: number) => void;
+};
 
+export const PostCtx = createContext<PostCtxType | null>(null);
 
-export const PostCtx = createContext <PostCtxType | null>(null)
+export const PostProvider = ({ children }: { children: ReactNode }) => {
+    const [posts, dispatch] = useReducer(postReducer, []);   //agora com reducer
 
-export const PostProvider = ({children}: {children: ReactNode}) =>{
+    const addPost = (title: string, body: string) => {
+        dispatch({ type: 'add', payload: { title, body } }); 
+    };
 
+    const removePost = (id: number) => {
+        dispatch({ type: 'remove', payload: { id } });
+    };
 
-    const [posts, dispatch] = useReducer (postReducer, [])   //agora com reducer
+    //setPosts([...posts, {id: posts.length, title, body}])  //add
 
-    const addPost = (title: string, body: string) =>{
-        
-        dispatch({type: 'add', payload: {title, body} })
-
-
-//setPosts([...posts, {id: posts.length, title, body}])  //add
-
-}
-
-return(
-
-<PostCtx.Provider value={{ posts, addPost }}>{children}</PostCtx.Provider>
-);
-
-
+    return (
+        <PostCtx.Provider value={{ posts, addPost, removePost }}>
+            {children}
+        </PostCtx.Provider>
+    );
 };
