@@ -1,7 +1,9 @@
 
 "use client"
 
+import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
+import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { ThemeProvider } from "@/contexts/ThemeCtx";
 import React from "react";
 
@@ -19,7 +21,9 @@ return(
      </header>
      <section>
       <p className="my-5">conteudo aqui lol!</p>
+      <Button label="Clique aqui" onClick={() => {}} />
      </section>
+     <ThemeSwitch />
 
   </Container>
 
