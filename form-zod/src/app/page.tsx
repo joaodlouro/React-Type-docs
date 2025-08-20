@@ -21,7 +21,7 @@ return(
      </header>
      <section>
       <p className="my-5">conteudo aqui lol!</p>
-      <Button label="Clique aqui" onClick={() => {}} />
+      <Button label="Clique aqui" onClick={() => {}}  />
      </section>
      <ThemeSwitch />
 

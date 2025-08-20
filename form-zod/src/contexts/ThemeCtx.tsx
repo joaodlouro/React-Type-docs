@@ -1,37 +1,42 @@
-import { Children, createContext, ReactNode, useContext, useEffect, useState } from "react"
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-const STORAGE_KEY = 'themeCtxKey'    //trocando entre themas, preto e branco
-
+const STORAGE_KEY = 'themeCtxKey';
 
 type ThemeCtx = {
+  theme: 'light' | 'dark';
+  setTheme: (newTheme: 'light' | 'dark') => void;
+};
 
-    theme: string;
-    setTheme: (newTheme: string) => void;
-}
+export const ThemeCtx = createContext<ThemeCtx>({
+  theme: 'light',
+  setTheme: () => {},
+});
 
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-export const ThemeCtx =  createContext<ThemeCtx | null>(null); 
+  
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'dark' || stored === 'light') {
+      setTheme(stored);
+    }
+  }, []);
 
-export const ThemeProvider = ({children}: {children: ReactNode}) => {
-    const [theme, setTheme] = useState(
-        localStorage.getItem(STORAGE_KEY) || 'light'
-    );
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
-useEffect (() =>{
+  return (
+    <ThemeCtx.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeCtx.Provider>
+  );
+};
 
-localStorage.setItem(STORAGE_KEY, theme)
-
-}, [theme]);
-
-
-
-return(
-
-    <ThemeCtx.Provider value={{theme, setTheme}}>{children}</ThemeCtx.Provider>
-)
-
-
-
-}
-
-export const useTheme = () => useContext (ThemeCtx)
+export const useTheme = () => useContext(ThemeCtx);
