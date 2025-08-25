@@ -1,5 +1,6 @@
-import { createContext } from "react";
-import { ReactNode, Message } from "@/types/Message";
+import { createContext, ReactNode, useReducer } from "react";
+import { Message } from "@/types/Message";
+import { ChatReducer } from "@/reducer/ChatReducer";
 
 type ChatCtx ={
     chat: Message[];
@@ -11,11 +12,16 @@ export const ChatCtx = createContext<ChatCtx | null>(null);
 
 export const ChatProvider = ({children}: {children: ReactNode}) => {
 
+    const [chat, dispatch] = useReducer(ChatReducer, []);
+    const addMessage = (user: string, text: string) => {
+        dispatch({type: 'add', payload: {user, text}});
+    };
+
 
 
 
     return(
-        <ChatCtx.Provider value={}>{children}</ChatCtx.Provider>
+        <ChatCtx.Provider value={{chat, addMessage}}>{children}</ChatCtx.Provider>
     )
 }
 
