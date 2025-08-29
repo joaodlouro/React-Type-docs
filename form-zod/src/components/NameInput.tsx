@@ -10,7 +10,7 @@ export const NameInput = () => {
 
    const handleKeyUpAction = (event: React.KeyboardEvent<HTMLInputElement>) => {
   if (event.key === 'Enter') {
-    const normalized = NameInput.trim().toLowerCase();
+    const normalized = NameInput.trim().toLowerCase(); //GARANTE QUE NÃO TENHA VARIAÇÕES DE ESPAÇOS E MAIÚSCULAS
     
     if (normalized !== '' && normalized !== 'bot') {
       UserCtx?.setUser(NameInput.trim()); 
