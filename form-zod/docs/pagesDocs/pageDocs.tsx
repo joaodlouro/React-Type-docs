@@ -8,26 +8,25 @@ import { User } from "../types/User";
 const Page = () => {
 
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
  
   useEffect(() => {
-    console.log("etapa1");
-    console.log("etapa2");
+    //setLoading(true); 
      fetch ("https://jsonplaceholder.typicode.com/users")
       .then(res => res.json())  
       .then(json => {
-        console.log("etapa3");
         setUsers(json);
    
       })
       .catch (()=>{
+
         console.log("Erro ao buscar dados"); // retorna o erro, e não segue executando o próximo then
+
       })
 
       .finally(() => {
-        console.log("terminou com erro ou sem erro!"); //quase nunca se usa, bom uso para impedir repetições
+    setLoading(false) //quase nunca se usa, bom uso para impedir repetições, quando existe um repetição de código e bom usar o finally!
       });
-
-      console.log("etapa4"); 
 
   }, []);
 
@@ -36,8 +35,8 @@ return (
   <div className="container flex-center mx-auto">
     <h1 className="text-3xl">Lista</h1>
 
-    {users.length <= 0 && "carregando..."}
-    {users.length > 0 &&
+    {loading && "carregando..."}
+    {!loading  && users.length > 0 &&
 
     <ul> 
     {users.map(item => (
@@ -46,6 +45,7 @@ return (
     }
     </ul>
 }
+{!loading && users.length === 0 && <p>Não há usuários!</p>}
 
   </div>
 )
