@@ -1,75 +1,57 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { User } from "../types/User";
-import { title } from "process";
+import { useState, useEffect } from "react";
+import React from "react";
+import { User } from "@/types/User";
 
 
 
 const Page = () => {
 
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  const geyUsers = async () => {
-    setLoading(true);
-    try {
-  //fetch busca os dados
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const json = await res.json(); //transformar em json 
-  setUsers(json); 
-    } catch (erro) {
-      console.log("Deu erro");
-    }
-    setLoading(false);
+  const [LegendInput, setLegendInput] = useState("");
+   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
-  };
- 
-  useEffect(() => {
-    geyUsers();
-    }, []);  //dessa forma fica bem reduzido
-     
-
-    const handleAddNewPost = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts"
-      , {
-        method: "POST",                //para outras requisições só mudar o method
-        headers: {
-          "Content-Type" : "application/json; charset=UTF-8"
-        },
-        body: JSON.stringify({
-          title: "Post teste",
-          body: "body do teste",
-          usetId: 99
-        })
-
+   const handleFileSend = async ()=>{
+    if(fileInputRef.current?.files && fileInputRef.current.files.length > 0){
+      const fileItem = fileInputRef.current.files[0];
+    }else{
+        alert("Por favor, selecione um arquivo!");
       }
-      );
-      const json = await res.json();   //transformar em json
-      console.log(json);
-      }
-    
 
-return (
 
-  <div className="container flex-center mx-auto">
-    <button onClick={handleAddNewPost}> Adicionar Nova post</button>
-    <h1 className="text-3xl">Lista</h1>
-
-    {loading && "carregando..."}
-    {!loading  && users.length > 0 &&
-
-    <ul> 
-    {users.map(item => (
-      <li key={item.id}>{item.name}
-      ({item.address.city})</li>))
     }
-    </ul>
-}
-{!loading && users.length === 0 && <p>Não há usuários!</p>}
+
+
+  return(
+
+  <div className="container mx-auto">
+<h1 className="text-3xl mt-5">Upload de imagem</h1>
+
+<div className="max-w-md flex flex-col gap-3 border-dotted border-white p-3 mt-5"> 
+
+<input
+ref={fileInputRef}
+type="file" />
+<input type="text" 
+placeholder="Digite aqui" 
+className="p-3 bg-white rounded-md text-black"
+value={LegendInput}
+onChange={(e) => setLegendInput(e.target.value)}
+/>
+<button
+ onClick={handleFileSend}
+ className="">Eviar imagem</button>
+
+</div>
+
 
   </div>
-)
+
+
+
+
+  )
 }
 
 export default Page;
