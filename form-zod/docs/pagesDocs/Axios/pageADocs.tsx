@@ -1,33 +1,23 @@
 "use client"
 
 import axios from 'axios'
-import React from 'react'
+
 
 const Page = () => {
 
-  const handleGetPosts = async () => {
-  
-    const RequestParams = {
-      postId:1,
-      sort:'desc'                              //mantandando detalhes da url monta a url com parametros
-    }
+return(
+<div className="">
+
+<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Add Post
+
+</button>
+
+</div>
 
 
 
-    const response = await axios.get('https://jsonplaceholder.typicode.com/comments', {
-      params: RequestParams
-      
-    })
-    console.log(response.data)
-    }
+)
 
 
-  return (
-    <div> 
-      <button onClick={handleGetPosts} >aqui clicar</button>
-      
-    </div>
-  )
 }
-
-export default Page
