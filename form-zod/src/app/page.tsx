@@ -1,52 +1,59 @@
-
 "use client"
-import  {api} from "@/Utils/Api"
 
-import axios from 'axios'
+import {useRef} from "react";
+import  axios  from "axios";
 
+const Page = () =>{
+  const fileInput = useRef<HTMLInputElement>(null);
 
-// const hadleGetPosts = async () =>{
+   const handleSendFile = async () => {
+    if (fileInput.current?.files && fileInput.current.files.length > 0) {
+      const file = fileInput.current.files[0];
 
-// const response = await api.get('/photos');         //mesma coisa, apenas muda os tipos de requisições
+      const data = new FormData();
+      data.append('name', 'Bonieky');
+      data.append('file', file);
 
-
-
-// }
-
-const hadleAddPosts= async()=>{
-const response = await api.post('/posts',{                //usando axios importanto, dessa forma reduz o codigo, ul em um local somente
-
- title: 'post title',
-    body: 'corpo',
-    userId: 10,
-  });
+      const Response =  await axios.post('https://jsonplaceholder.typicode.com/posts', data); //passa o dado direto
 
 
 
-   if (response.data.id){
-    console.log('Post adicionado com sucesso');     //verifica se o post foi adicionado, basico
-   } else {
-    console.log('Erro ao adicionar post');
-   }
   }
-
-
-
-
-const Page = () => {
+}
 
   return(
 
-<div className="container mx-auto p-4">
-<button onClick={hadleAddPosts} className="">
-  post aqui
-  </button>
-  </div>
+<div className="container mx-auto">
+  <input
+  ref={fileInput}
+  type="file"
+  />
+
+  <button 
+  onClick={handleSendFile}
+  className=""> Enviar x coisa </button>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
   )
+
+
+
+
 
 
 }
 
 
-
-export default Page
+export default Page;
