@@ -1,15 +1,27 @@
 
 "use client"
+import  {api} from "@/Utils/Api"
 
 import axios from 'axios'
 
+
+// const hadleGetPosts = async () =>{
+
+// const response = await api.get('/photos');         //mesma coisa, apenas muda os tipos de requisições
+
+
+
+// }
+
 const hadleAddPosts= async()=>{
-  const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {       //para axios. post 
-                                                                                          // poderias ser PUT ou DELETE tbm
-    title: 'post title',
+const response = await api.post('/posts',{                //usando axios importanto, dessa forma reduz o codigo, ul em um local somente
+
+ title: 'post title',
     body: 'corpo',
     userId: 10,
   });
+
+
 
    if (response.data.id){
     console.log('Post adicionado com sucesso');     //verifica se o post foi adicionado, basico
